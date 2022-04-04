@@ -22,5 +22,10 @@ namespace Intex_2.Controllers
             return View();
         }
 
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
     }
 }
