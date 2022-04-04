@@ -18,7 +18,7 @@
             <td>Main Road Name</td>
             <td>City</td>
             <td>County</td>
-            <td>Crash Severity ID</td>
+            <td>Crash Severity</td>
             <td>Crash Details</td>
         </tr>
     </thead>
@@ -35,7 +35,7 @@
             <td>@c.MAIN_ROAD_NAME</td>
             <td>@c.CITY</td>
             <td>@c.COUNTY_NAME</td>
-            <td>@c.CRASH_SEVERITY_ID</td>
+            <td>@c.Severity.SEVERITY_NAME</td>
 
             <td><a class="btn btn-outline-secondary" asp-controller="Home" asp-action="CrashDetails" asp-route-crashId="@c.CRASH_ID">Details</a></td>
         </tr>

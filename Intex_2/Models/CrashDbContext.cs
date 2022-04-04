@@ -14,5 +14,7 @@ namespace Intex_2.Models
         }
 
         public DbSet<Crash> Crashes { get; set; }
+
+        public DbSet<Severity> Severities { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Intex_2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace Intex_2.Controllers
         public IActionResult ViewCrashes()
         {
             List<Crash> crashes = _repo.Crashes
+                .Include(x => x.Severity)
                 .Where(x => x.CRASH_ID <= 10805710) // Right now this is only bringing in about 15 records
                 .OrderBy(x => x.CRASH_DATETIME)
                 .ToList();
@@ -43,6 +45,7 @@ namespace Intex_2.Controllers
             ViewBag.CrashId = crashId;
 
             Crash crash = _repo.Crashes
+                .Include(x => x.Severity)
                 .Where(x => x.CRASH_ID == crashId)
                 .Single();
 

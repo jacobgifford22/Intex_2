@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,7 +20,6 @@ namespace Intex_2.Models
         public string MAIN_ROAD_NAME { get; set; }
         public string CITY { get; set; }
         public string COUNTY_NAME { get; set; }
-        public int CRASH_SEVERITY_ID { get; set; }
         public string WORK_ZONE_RELATED { get; set; }
         public string PEDESTRIAN_INVOLVED { get; set; }
         public string BICYCLIST_INVOLVED { get; set; }
@@ -40,5 +40,10 @@ namespace Intex_2.Models
         public string DROWSY_DRIVING { get; set; }
         public string ROADWAY_DEPARTURE { get; set; }
 
+        // Foreign key
+        [Display(Name = "Severity")]
+        public int CRASH_SEVERITY_ID { get; set; }
+        [ForeignKey("CRASH_SEVERITY_ID")]
+        public virtual Severity Severity { get; set; }
     }
 }

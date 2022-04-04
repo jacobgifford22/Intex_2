@@ -16,6 +16,8 @@ namespace Intex_2.Models
 
         public IQueryable<Crash> Crashes => _context.Crashes;
 
+        public IQueryable<Severity> Severities => _context.Severities;
+
         public void AddCrash(Crash c)
         {
             _context.SaveChanges();

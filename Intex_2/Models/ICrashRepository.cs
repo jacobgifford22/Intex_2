@@ -9,6 +9,8 @@ namespace Intex_2.Models
     {
         IQueryable<Crash> Crashes { get; }
 
+        IQueryable<Severity> Severities { get; }
+
         public void SaveCrash(Crash c);
 
         public void AddCrash(Crash c);
