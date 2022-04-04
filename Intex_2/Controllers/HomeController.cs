@@ -11,10 +11,11 @@ namespace Intex_2.Controllers
 {
     public class HomeController : Controller
     {
+        private ICrashRepository _repo { get; set; }
 
-        public HomeController()
+        public HomeController(ICrashRepository temp)
         {
-            
+            _repo = temp;
         }
 
         public IActionResult Index()
@@ -25,6 +26,16 @@ namespace Intex_2.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult ViewCrashes()
+        {
+            List<Crash> crashes = _repo.Crashes
+                .Where(x => x.CRASH_ID <= 10805710)
+                .OrderBy(x => x.CRASH_DATETIME)
+                .ToList();
+
+            return View(crashes);
         }
 
     }
