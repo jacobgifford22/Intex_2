@@ -38,5 +38,16 @@ namespace Intex_2.Controllers
             return View(crashes);
         }
 
+        public IActionResult CrashDetails(int crashId)
+        {
+            ViewBag.CrashId = crashId;
+
+            Crash crash = _repo.Crashes
+                .Where(x => x.CRASH_ID == crashId)
+                .Single();
+
+            return View(crash);
+        }
+
     }
 }
