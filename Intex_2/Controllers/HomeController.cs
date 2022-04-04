@@ -31,7 +31,7 @@ namespace Intex_2.Controllers
         public IActionResult ViewCrashes()
         {
             List<Crash> crashes = _repo.Crashes
-                .Where(x => x.CRASH_ID <= 10805710)
+                .Where(x => x.CRASH_ID <= 10805710) // Right now this is only bringing in about 15 records
                 .OrderBy(x => x.CRASH_DATETIME)
                 .ToList();
 
@@ -49,5 +49,9 @@ namespace Intex_2.Controllers
             return View(crash);
         }
 
+        public IActionResult MLModel()
+        {
+            return View();
+        }
     }
 }
