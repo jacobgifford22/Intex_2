@@ -46,7 +46,7 @@ namespace Intex_2
             });
             services.AddDbContext<AppIdentityDBContext>(options =>
             {
-                options.UseMySql(Configuration["ConnectionStrings:"]);
+                options.UseMySql(Configuration["ConnectionStrings:IdentityDBConnection"]);
             });
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDBContext>();
