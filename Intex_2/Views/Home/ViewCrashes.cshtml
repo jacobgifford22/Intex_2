@@ -1,8 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Crashes";
+    //Layout = "~/Views/Shared/_ViewCrashesLayout.cshtml";
 }
 
-@model List<Crash>
+@model CrashesViewModel
 
 <h1>Crashes</h1>
 
@@ -19,11 +20,11 @@
             <td>City</td>
             <td>County</td>
             <td>Crash Severity</td>
-            <td>Crash Details</td>
+            <td>More Details</td>
         </tr>
     </thead>
     <tbody>
-        @foreach (var c in Model)
+        @foreach (var c in Model.Crashes)
         {
         <tr>
             <td>@c.CRASH_ID</td>
@@ -37,8 +38,14 @@
             <td>@c.COUNTY_NAME</td>
             <td>@c.Severity.SEVERITY_NAME</td>
 
-            <td><a class="btn btn-outline-secondary" asp-controller="Home" asp-action="CrashDetails" asp-route-crashId="@c.CRASH_ID">Details</a></td>
+            <td><a class="btn btn-outline-secondary" asp-controller="Home" asp-action="CrashDetails" 
+                   asp-route-crashId="@c.CRASH_ID" asp-route-returnPage="@Model.PageInfo.CurrentPage">Details</a></td>
         </tr>
         }
     </tbody>
 </table>
+
+<div page-model="@Model.PageInfo" page-action="ViewCrashes" page-class="btn border mt-3" page-classes-enabled="true"
+     page-class-links="text-center" page-class-normal="btn btn-outline-dark" page-class-selected="btn btn-primary"
+     page-class-label="p-2 font-weight-bold  pt-md-2  text-center" class="text-center">
+</div>

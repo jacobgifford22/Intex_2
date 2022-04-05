@@ -67,8 +67,11 @@ namespace Intex_2
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "Paging",
+                    pattern: "/ViewCrashes/Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "ViewCrashes" });
+                
+                endpoints.MapDefaultControllerRoute();
             });
 
             IdentitySeedData.EnsurePopulated(app);
