@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body style="background-image: url('../../wwwroot/img/black_grey_background.jpg');" >
+<body style="background: #222624 center url(../../wwwroot/img/black_grey_background.jpg)">
+    
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-warning border-bottom box-shadow mb-3">
             <div class="container">
@@ -39,9 +40,9 @@
             </div>
         </nav>
     </header>
-    <div class="container" style="background-image: url('file:C:\\\Users\maddy\source\repos\Intex_2\Intex_2\wwwroot\img\black_grey_background.jpg'); ">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3" >
+    <partial name="_CookieConsentPartial" />
+    <div class="container">
+        <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>

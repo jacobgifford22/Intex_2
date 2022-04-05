@@ -20,10 +20,10 @@ namespace Intex_2.Models
                 .CreateScope().ServiceProvider
                 .GetRequiredService<AppIdentityDBContext>();
 
-            //if (context.Database.GetPendingMigrations().Any())
-            //{
-            //   context.Database.Migrate();
-            //}
+            if (context.Database.GetPendingMigrations().Any())
+            {
+               context.Database.Migrate();
+            }
             UserManager<IdentityUser> userManager = app.ApplicationServices
                 .CreateScope().ServiceProvider
                 .GetRequiredService<UserManager<IdentityUser>>();
