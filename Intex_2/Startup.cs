@@ -36,6 +36,22 @@ namespace Intex_2
 
             services.AddScoped<ICrashRepository, EFCrashRepository>();
 
+            
+            services.AddDbContext<AppIdentityDBContext>(options =>
+            {
+                options.UseMySql(Configuration["ConnectionStrings:IdentityDBConnection"]);
+            });
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDBContext>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                //Password requirements
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+
+                //
+            });
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential 
@@ -44,12 +60,7 @@ namespace Intex_2
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddDbContext<AppIdentityDBContext>(options =>
-            {
-                options.UseMySql(Configuration["ConnectionStrings:IdentityDBConnection"]);
-            });
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppIdentityDBContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
