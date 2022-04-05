@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Crashe Details";
+    ViewData["Title"] = "Crash Details";
 }
 
 @model Crash
@@ -26,7 +26,7 @@
             <p class="font-weight-bold">Motorcycle Involved</p>
             <p class="font-weight-bold">Improper Restraint</p>
 
-            <a class="btn btn-secondary" asp-controller="Home" asp-action="ViewCrashes">Back</a>
+            <a class="btn btn-secondary" asp-controller="Home" asp-action="ViewCrashes" asp-route-pageNum="@ViewBag.ReturnPage">Back</a>
         </div>
         <div class="col">
             <p>@Model.CRASH_ID</p>

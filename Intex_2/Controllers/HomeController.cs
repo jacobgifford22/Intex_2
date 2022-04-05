@@ -1,4 +1,5 @@
 ﻿using Intex_2.Models;
+using Intex_2.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -29,20 +30,44 @@ namespace Intex_2.Controllers
             return View();
         }
 
-        public IActionResult ViewCrashes()
+        public IActionResult ViewCrashes(string crashSeverity, int pageNum = 1)
         {
-            List<Crash> crashes = _repo.Crashes
-                .Include(x => x.Severity)
-                .Where(x => x.CRASH_ID <= 10805710) // Right now this is only bringing in about 15 records
-                .OrderBy(x => x.CRASH_DATETIME)
-                .ToList();
+            int pageSize = 25;
 
-            return View(crashes);
+            var x = new CrashesViewModel
+            {
+                Crashes = _repo.Crashes
+                    .Include(x => x.Severity)
+                    .Where(x => x.Severity.SEVERITY_NAME == crashSeverity || crashSeverity == null)
+                    .OrderBy(x => x.CRASH_ID)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalCrashes = 
+                        (crashSeverity == null 
+                            ? _repo.Crashes.Count()
+                            : _repo.Crashes
+                                .Include(x => x.Severity)
+                                .Where(x => x.Severity.SEVERITY_NAME == crashSeverity)
+                                .Count()),
+                    CrashesPerPage = pageSize,
+                    CurrentPage = pageNum,
+                    LinksPerPage = 8,
+                    UrlParams = "Page-",
+                    PagesLeft = 2,
+                    PagesRight = 2
+                }
+            };
+
+            return View(x);
         }
 
-        public IActionResult CrashDetails(int crashId)
+        public IActionResult CrashDetails(int crashId, int returnPage)
         {
             ViewBag.CrashId = crashId;
+            ViewBag.ReturnPage = returnPage;
 
             Crash crash = _repo.Crashes
                 .Include(x => x.Severity)
