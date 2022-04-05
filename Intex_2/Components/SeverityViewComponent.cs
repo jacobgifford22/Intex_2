@@ -19,9 +19,10 @@ namespace Intex_2.Components
 
         public IViewComponentResult Invoke()
         {
-            var severities = _repo.Crashes
-                .Include(x => x.Severity)
-                .Select(x => x.Severity.SEVERITY_NAME)
+            ViewBag.SelectedSeverity = RouteData?.Values["crashSeverity"];
+            
+            var severities = _repo.Severities
+                .Select(x => x.SEVERITY_NAME)
                 .Distinct()
                 .OrderBy(x => x);
             

@@ -77,11 +77,30 @@ namespace Intex_2
 
             app.UseEndpoints(endpoints =>
             {
+                // Page number and severity
                 endpoints.MapControllerRoute(
-                    name: "Paging",
+                    name: "severitypage",
+                    pattern: "/ViewCrashes/{crashSeverity}/Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "ViewCrashes" });
+
+                // Page number only
+                endpoints.MapControllerRoute(
+                    name: "page",
                     pattern: "/ViewCrashes/Page{pageNum}",
                     defaults: new { Controller = "Home", action = "ViewCrashes" });
-                
+
+                // Severity only
+                endpoints.MapControllerRoute(
+                    name: "severity",
+                    pattern: "/ViewCrashes/{crashSeverity}",
+                    defaults: new { Controller = "Home", action = "ViewCrashes", pageNum = 1 });
+
+                // Crash details page
+                endpoints.MapControllerRoute(
+                    name: "crashdetails",
+                    pattern: "/CrashDetails/{crashId}/{returnPage}",
+                    defaults: new { Controller = "Home", action = "CrashDetails" });
+
                 endpoints.MapDefaultControllerRoute();
             });
 

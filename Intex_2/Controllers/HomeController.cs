@@ -45,7 +45,13 @@ namespace Intex_2.Controllers
 
                 PageInfo = new PageInfo
                 {
-                    TotalCrashes = _repo.Crashes.Count(),
+                    TotalCrashes = 
+                        (crashSeverity == null 
+                            ? _repo.Crashes.Count()
+                            : _repo.Crashes
+                                .Include(x => x.Severity)
+                                .Where(x => x.Severity.SEVERITY_NAME == crashSeverity)
+                                .Count()),
                     CrashesPerPage = pageSize,
                     CurrentPage = pageNum,
                     LinksPerPage = 8,
@@ -54,14 +60,6 @@ namespace Intex_2.Controllers
                     PagesRight = 2
                 }
             };
-
-            List<Crash> crashes = _repo.Crashes
-                .Include(x => x.Severity)
-                // .Where(x => x.CRASH_ID <= 10805710) // Right now this is only bringing in about 15 records
-                .OrderBy(x => x.CRASH_DATETIME)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
 
             return View(x);
         }

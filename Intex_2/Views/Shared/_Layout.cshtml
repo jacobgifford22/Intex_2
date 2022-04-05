@@ -45,15 +45,9 @@
         </main>
     </div>
 
-    @*<div class="row m-1 p-1">
-        <div id="filters" class="col-3">
-            <vc:severity></vc:severity>
-            <br />
-        </div>
-        <div class="col-9">
-            @RenderBody()
-        </div>
-    </div>*@
-
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
