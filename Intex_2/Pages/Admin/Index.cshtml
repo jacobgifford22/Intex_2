@@ -1,0 +1,26 @@
+﻿@page "/admin"
+
+@model Intex_2.Pages.Admin.IndexModel
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Admin</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <base href="/" />
+</head>
+
+<body>
+    <component type="typeof(Intex_2.Pages.Admin.Routed)" render-mode="Server" />
+    <script src="/_framework/blazor.server.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</body>
+
+</html>

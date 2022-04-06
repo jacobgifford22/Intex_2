@@ -36,6 +36,8 @@ namespace Intex_2
 
             services.AddScoped<ICrashRepository, EFCrashRepository>();
 
+            services.AddRazorPages();
+            services.AddServerSideBlazor();
             
             services.AddDbContext<AppIdentityDBContext>(options =>
             {
@@ -102,6 +104,11 @@ namespace Intex_2
                     defaults: new { Controller = "Home", action = "CrashDetails" });
 
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
+
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
             });
 
             IdentitySeedData.EnsurePopulated(app);
