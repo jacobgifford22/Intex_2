@@ -1,0 +1,49 @@
+﻿@page "/admin/crashes/delete/{id:int}"
+@inherits OwningComponentBase<ICrashRepository>
+
+
+<h3 class="bg-danger text-white text-center p-1">Delete Crash</h3>
+
+<h5 class="text-center">Are you sure you want to delete crash @c.CRASH_ID?</h5>
+
+<div class="container-fluid p-0 m-0">
+    <div class="row">
+        <div class="col-5"></div>
+        <div class="col-1 text-right">
+            <NavLink class="btn btn-secondary" href="/admin/crashes/">Cancel</NavLink>
+        </div>
+        <div class="col-1 text-left">
+            <EditForm Model="c" OnValidSubmit="RemoveCrash">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </EditForm>
+        </div>
+        <div class="col-5"></div>
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; } = 0;
+
+    public Crash c { get; set; }
+
+    public ICrashRepository repo => Service;
+
+    protected override void OnParametersSet()
+    {
+         c = repo.Crashes.Include(x => x.Severity).FirstOrDefault(x => x.CRASH_ID == Id);
+    }
+
+    public void RemoveCrash()
+    {
+        repo.DeleteCrash(c);
+
+        NavManager.NavigateTo("/admin/crashes");
+    }
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+
+}

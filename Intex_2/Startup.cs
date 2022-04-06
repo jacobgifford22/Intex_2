@@ -45,6 +45,7 @@ namespace Intex_2
             });
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDBContext>();
+
             services.Configure<IdentityOptions>(options =>
             {
                 //Password requirements

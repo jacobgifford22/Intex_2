@@ -1,8 +1,98 @@
 ﻿@page "/admin/crashes"
 @page "/admin"
+@inherits OwningComponentBase<ICrashRepository>
 
-<h3>Crashes</h3>
+<div class="container-fluid p-0 m-0">
+    <div class="row">
+        <div class="col">
+            <h3>Crashes</h3>
+        </div>
+        <div class="col text-right">
+            <NavLink class="btn btn-primary" href="/admin/crashes/add">Add Crash</NavLink>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped border-warning">
+    <thead class="font-weight-bold bg-warning">
+        <tr>
+            <td>Crash ID</td>
+            <td>Date/Time</td>
+            <td>Route</td>
+            <td>Milepoint</td>
+            <td>Latitude</td>
+            <td>Longitude</td>
+            <td>Main Road Name</td>
+            <td>City</td>
+            <td>County</td>
+            <td>Severity</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (CrashData?.Count() > 0)
+        {
+            @foreach (Crash c in CrashData)
+            {
+        <tr>
+            <td>@c.CRASH_ID</td>
+            <td>@c.CRASH_DATETIME</td>
+            <td>@c.ROUTE</td>
+            <td>@c.MILEPOINT</td>
+            <td>@c.LAT_UTM_Y</td>
+            <td>@c.LONG_UTM_X</td>
+            <td>@c.MAIN_ROAD_NAME</td>
+            <td>@c.CITY</td>
+            <td>@c.COUNTY_NAME</td>
+            <td>@c.Severity.SEVERITY_NAME</td>
+
+            <td>
+                <NavLink class="btn btn-info btn-sm" href="@GetDetailsUrl(c.CRASH_ID)">Details</NavLink>
+            </td>
+
+            <td>
+                <NavLink class="btn btn-warning btn-sm" href="@GetEditUrl(c.CRASH_ID)">Edit</NavLink>
+            </td>
+
+            <td>
+                <NavLink class="btn btn-danger btn-sm" href="@GetDeleteUrl(c.CRASH_ID)">Delete</NavLink>
+            </td>
+        </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="13" class="text-center">No Crashes</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
 
 @code {
+
+    public ICrashRepository repo => Service;
+
+    public IEnumerable<Crash> CrashData { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        CrashData = await repo.Crashes.Include(x => x.Severity).OrderBy(x => x.CRASH_ID).Take(10).ToListAsync();
+    }
+
+    public string GetDetailsUrl(int id) => $"/admin/crashes/details/{id}";
+
+    public string GetEditUrl(int id) => $"/admin/crashes/edit/{id}";
+
+    public string GetDeleteUrl(int id) => $"/admin/crashes/delete/{id}";
 
 }

@@ -12,7 +12,7 @@ namespace Intex_2.Models
     public static class IdentitySeedData
     {
         private const string adminUser = "admin";
-        private const string adminPassword = "admin";
+        private const string adminPassword = "Admin123456!";
 
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
@@ -24,6 +24,7 @@ namespace Intex_2.Models
             {
                context.Database.Migrate();
             }
+
             UserManager<IdentityUser> userManager = app.ApplicationServices
                 .CreateScope().ServiceProvider
                 .GetRequiredService<UserManager<IdentityUser>>();

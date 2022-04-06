@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+
+@model Intex_2.Models.ViewModels.LoginModel
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Login</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="bg-warning text-white p-2">
+        <span class="navbar-brand m-lg-2">Crash Center Admin</span>
+    </div>
+
+    <form method="post" asp-controller="Account" asp-action="Login">
+        <div class="container-sm m-1 p-1 text-center align-middle">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="container">
+
+                        <div class="row form-group pl-lg-4 pr-lg-4">
+                            <div class="col-2 font-weight-bold">
+                                <label asp-for="Username">Username: </label>
+                            </div>
+                            <div class="col">
+                                <input asp-for="Username" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row form-group pl-lg-4 pr-lg-4">
+                            <div class="col-2 font-weight-bold">
+                                <label asp-for="Password">Password: </label>
+                            </div>
+                            <div class="col">
+                                <input asp-for="Password" class="form-control" type="password" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-danger" asp-validation-summary="All"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+                                <button class="btn btn-primary" type="submit">Log In</button>
+
+                                <input type="hidden" asp-for="ReturnUrl" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

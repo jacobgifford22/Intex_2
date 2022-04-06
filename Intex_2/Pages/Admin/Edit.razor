@@ -1,0 +1,300 @@
+﻿@page "/admin/crashes/edit/{id:int}"
+@page "/admin/crashes/add"
+@inherits OwningComponentBase<ICrashRepository>
+
+<style>
+    div.validation-message {color: crimson; font-weight:500}
+</style>
+
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText Crash</h3>
+
+<EditForm Model="c" OnValidSubmit="SaveCrash">
+
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+
+    <div class="container">
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Crash ID</label>
+            </div>
+            <div class="col-4">
+                <input class="form-control" disabled value=@c.CRASH_ID />
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Unrestrained</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.UNRESTRAINED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.UNRESTRAINED"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Date/Time</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.CRASH_DATETIME)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.CRASH_DATETIME"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">DUI</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.DUI)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.DUI"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Route</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.ROUTE)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.ROUTE"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Intersection Related</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.INTERSECTION_RELATED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.INTERSECTION_RELATED"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Milepoint</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.MILEPOINT)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.MILEPOINT"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Wild Animal Related</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.WILD_ANIMAL_RELATED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.WILD_ANIMAL_RELATED"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Latitude</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.LAT_UTM_Y)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.LAT_UTM_Y"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Domestic Animal Related</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.DOMESTIC_ANIMAL_RELATED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.DOMESTIC_ANIMAL_RELATED"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Longitude</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.LONG_UTM_X)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.LONG_UTM_X"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Overturn/Rollover</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.OVERTURN_ROLLOVER)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.OVERTURN_ROLLOVER"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Main Road Name</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.MAIN_ROAD_NAME)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.MAIN_ROAD_NAME"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Commercial Motor Vehicle Involved</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.COMMERCIAL_MOTOR_VEH_INVOLVED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.COMMERCIAL_MOTOR_VEH_INVOLVED"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">City</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.CITY)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.CITY"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Teenage Driver Involved</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.TEENAGE_DRIVER_INVOLVED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.TEENAGE_DRIVER_INVOLVED"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">County</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.COUNTY_NAME)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.COUNTY_NAME"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Older Driver Involved</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.OLDER_DRIVER_INVOLVED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.OLDER_DRIVER_INVOLVED"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Severity</label>
+            </div>
+            <div class="col-4">
+                @* TODO: Add a select from list dropdown with severity names *@
+                <ValidationMessage For="@(() => c.CRASH_SEVERITY_ID)"></ValidationMessage>
+                <InputNumber class="form-control" @bind-Value="c.CRASH_SEVERITY_ID"></InputNumber>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Night/Dark Condition</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.NIGHT_DARK_CONDITION)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.NIGHT_DARK_CONDITION"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Work Zone Related</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.WORK_ZONE_RELATED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.WORK_ZONE_RELATED"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Single Vehicle</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.SINGLE_VEHICLE)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.SINGLE_VEHICLE"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Pedestrian Involvevd</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.PEDESTRIAN_INVOLVED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.PEDESTRIAN_INVOLVED"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Distracted Driving</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.DISTRACTED_DRIVING)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.DISTRACTED_DRIVING"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Bicyclist Involved</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.BICYCLIST_INVOLVED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.BICYCLIST_INVOLVED"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Drowsy Driving</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.DROWSY_DRIVING)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.DROWSY_DRIVING"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Motorcycle Involved</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.MOTORCYCLE_INVOLVED)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.MOTORCYCLE_INVOLVED"></InputText>
+            </div>
+            <div class="col-2">
+                <label class="font-weight-bold">Roadway Departure</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.ROADWAY_DEPARTURE)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.ROADWAY_DEPARTURE"></InputText>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-2">
+                <label class="font-weight-bold">Improper Restraint</label>
+            </div>
+            <div class="col-4">
+                <ValidationMessage For="@(() => c.IMPROPER_RESTRAINT)"></ValidationMessage>
+                <InputText class="form-control" @bind-Value="c.IMPROPER_RESTRAINT"></InputText>
+            </div>
+            <div class="col-2">
+
+            </div>
+            <div class="col-4">
+
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <NavLink class="btn btn-secondary" href="/admin/crashes">Cancel</NavLink>
+    <button type="submit" class="btn btn-@ThemeColor">Save</button>
+
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; } = 0;
+
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Add" : "Edit";
+
+    public Crash c { get; set; } = new Crash();
+
+    public ICrashRepository repo => Service;
+
+    protected override void OnParametersSet()
+    {
+        if (Id != 0) // Existing crash
+        {
+            c = repo.Crashes.Include(x => x.Severity).FirstOrDefault(x => x.CRASH_ID == Id);
+        }
+    }
+
+    public void SaveCrash()
+    {
+        if (Id == 0) // New crash
+        {
+            repo.AddCrash(c);
+        }
+        else
+        {
+            repo.SaveCrash(c);
+        }
+
+        NavManager.NavigateTo("/admin/crashes");
+    }
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+
+}

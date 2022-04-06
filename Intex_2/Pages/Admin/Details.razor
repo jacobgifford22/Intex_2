@@ -1,13 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Crash Details";
-}
-
-@model Crash
-
-<h1>Details for Crash @ViewBag.CrashId</h1>
-<br />
+﻿@page "/admin/crashes/details/{id:int}"
 
 <div class="container">
+    <h1>Details for Crash @crash.CRASH_ID</h1>
     <div class="row">
         <div class="col-md-auto">
             <p class="font-weight-bold">Crash ID</p>
@@ -26,24 +20,25 @@
             <p class="font-weight-bold">Motorcycle Involved</p>
             <p class="font-weight-bold">Improper Restraint</p>
 
-            <a class="btn btn-secondary" asp-controller="Home" asp-action="ViewCrashes" asp-route-pageNum="@ViewBag.ReturnPage">Back</a>
+            <NavLink class="btn btn-secondary" href="/admin/crashes">Back</NavLink>
+            <NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
         </div>
         <div class="col">
-            <p>@Model.CRASH_ID</p>
-            <p>@Model.CRASH_DATETIME</p>
-            <p>@Model.ROUTE</p>
-            <p>@Model.MILEPOINT</p>
-            <p>@Model.LAT_UTM_Y</p>
-            <p>@Model.LONG_UTM_X</p>
-            <p>@Model.MAIN_ROAD_NAME</p>
-            <p>@Model.CITY</p>
-            <p>@Model.COUNTY_NAME</p>
-            <p>@Model.Severity.SEVERITY_NAME</p>
-            <p>@Model.WORK_ZONE_RELATED</p>
-            <p>@Model.PEDESTRIAN_INVOLVED</p>
-            <p>@Model.BICYCLIST_INVOLVED</p>
-            <p>@Model.MOTORCYCLE_INVOLVED</p>
-            <p>@Model.IMPROPER_RESTRAINT</p>
+            <p>@crash.CRASH_ID</p>
+            <p>@crash.CRASH_DATETIME</p>
+            <p>@crash.ROUTE</p>
+            <p>@crash.MILEPOINT</p>
+            <p>@crash.LAT_UTM_Y</p>
+            <p>@crash.LONG_UTM_X</p>
+            <p>@crash.MAIN_ROAD_NAME</p>
+            <p>@crash.CITY</p>
+            <p>@crash.COUNTY_NAME</p>
+            <p>@crash.Severity.SEVERITY_NAME</p>
+            <p>@crash.WORK_ZONE_RELATED</p>
+            <p>@crash.PEDESTRIAN_INVOLVED</p>
+            <p>@crash.BICYCLIST_INVOLVED</p>
+            <p>@crash.MOTORCYCLE_INVOLVED</p>
+            <p>@crash.IMPROPER_RESTRAINT</p>
         </div>
         <div class="col-md-auto">
             <p class="font-weight-bold">Unrestrained</p>
@@ -62,20 +57,38 @@
             <p class="font-weight-bold">Roadway Departure</p>
         </div>
         <div class="col">
-            <p>@Model.UNRESTRAINED</p>
-            <p>@Model.DUI</p>
-            <p>@Model.INTERSECTION_RELATED</p>
-            <p>@Model.WILD_ANIMAL_RELATED</p>
-            <p>@Model.DOMESTIC_ANIMAL_RELATED</p>
-            <p>@Model.OVERTURN_ROLLOVER</p>
-            <p>@Model.COMMERCIAL_MOTOR_VEH_INVOLVED</p>
-            <p>@Model.TEENAGE_DRIVER_INVOLVED</p>
-            <p>@Model.OLDER_DRIVER_INVOLVED</p>
-            <p>@Model.NIGHT_DARK_CONDITION</p>
-            <p>@Model.SINGLE_VEHICLE</p>
-            <p>@Model.DISTRACTED_DRIVING</p>
-            <p>@Model.DROWSY_DRIVING</p>
-            <p>@Model.ROADWAY_DEPARTURE</p>
+            <p>@crash.UNRESTRAINED</p>
+            <p>@crash.DUI</p>
+            <p>@crash.INTERSECTION_RELATED</p>
+            <p>@crash.WILD_ANIMAL_RELATED</p>
+            <p>@crash.DOMESTIC_ANIMAL_RELATED</p>
+            <p>@crash.OVERTURN_ROLLOVER</p>
+            <p>@crash.COMMERCIAL_MOTOR_VEH_INVOLVED</p>
+            <p>@crash.TEENAGE_DRIVER_INVOLVED</p>
+            <p>@crash.OLDER_DRIVER_INVOLVED</p>
+            <p>@crash.NIGHT_DARK_CONDITION</p>
+            <p>@crash.SINGLE_VEHICLE</p>
+            <p>@crash.DISTRACTED_DRIVING</p>
+            <p>@crash.DROWSY_DRIVING</p>
+            <p>@crash.ROADWAY_DEPARTURE</p>
         </div>
     </div>
 </div>
+
+@code {
+
+    [Inject]
+    public ICrashRepository repo { get; set; }
+
+    [Parameter]
+    public int Id { get; set; }
+
+    public Crash crash { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        crash = repo.Crashes.Include(x => x.Severity).FirstOrDefault(x => x.CRASH_ID == Id);
+    }
+
+    public string EditUrl => $"/admin/crashes/edit/{crash.CRASH_ID}";
+}
