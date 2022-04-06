@@ -6,6 +6,12 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\favicon.ico" />
+    <Content Remove="wwwroot\js\scripts.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\scripts.js" />
+    <None Include="wwwroot\lib\startbootstrap-modern-business-gh-pages\js\scripts.js" />
   </ItemGroup>
 
   <ItemGroup>
