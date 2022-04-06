@@ -1,0 +1,25 @@
+﻿@{
+    // Needs asp-route-county set up
+}
+
+@model IEnumerable<string>
+
+<div class="btn-group">
+    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        County
+    </button>
+
+    <div class="dropdown-menu">
+        <a asp-controller="Home" asp-action="ViewCrashes" asp-route-crashSeverity="" asp-route-pageNum="1"
+           class="dropdown-item">Clear Filter</a>
+
+        <div class="dropdown-divider"></div>
+
+        @foreach (string c in Model)
+        {
+            <a asp-controller="Home" asp-action="ViewCrashes" asp-route-crashSeverity="@c" asp-route-pageNum="1"
+               class="@(ViewBag.SelectedCounty == c ? "dropdown-item active" : "dropdown-item")">@c</a>
+        }
+    </div>
+</div>
+
