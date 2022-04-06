@@ -22,7 +22,7 @@ namespace Intex_2.Models
 
             if (context.Database.GetPendingMigrations().Any())
             {
-               context.Database.Migrate();
+                context.Database.Migrate();
             }
 
             UserManager<IdentityUser> userManager = app.ApplicationServices
