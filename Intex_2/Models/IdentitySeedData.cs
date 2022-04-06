@@ -20,26 +20,26 @@ namespace Intex_2.Models
                 .CreateScope().ServiceProvider
                 .GetRequiredService<AppIdentityDBContext>();
 
-            //if (context.Database.GetPendingMigrations().Any())
-            //{
-            //    context.Database.Migrate();
-            //}
+            if (context.Database.GetPendingMigrations().Any())
+            {
+                context.Database.Migrate();
+            }
 
-            //UserManager<IdentityUser> userManager = app.ApplicationServices
-            //    .CreateScope().ServiceProvider
-            //    .GetRequiredService<UserManager<IdentityUser>>();
+            UserManager<IdentityUser> userManager = app.ApplicationServices
+                .CreateScope().ServiceProvider
+                .GetRequiredService<UserManager<IdentityUser>>();
 
-            //IdentityUser user = await userManager.FindByIdAsync(adminUser);
+            IdentityUser user = await userManager.FindByIdAsync(adminUser);
 
-            //if (user == null)
-            //{
-            //    user = new IdentityUser(adminUser);
+            if (user == null)
+            {
+                user = new IdentityUser(adminUser);
 
-            //    user.Email = "test@test.com";
-            //    user.PhoneNumber = "801-111-1111";
+                user.Email = "test@test.com";
+                user.PhoneNumber = "801-111-1111";
 
-            //    await userManager.CreateAsync(user, adminPassword);
-            //}
+                await userManager.CreateAsync(user, adminPassword);
+            }
         }
     }
 }
