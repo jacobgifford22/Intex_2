@@ -1,79 +1,83 @@
 ﻿@page "/admin/crashes/details/{id:int}"
 
-<div class="container">
-    <h1>Details for Crash @crash.CRASH_ID</h1>
-    <div class="row">
-        <div class="col-md-auto">
-            <p class="font-weight-bold">Crash ID</p>
-            <p class="font-weight-bold">Date/Time</p>
-            <p class="font-weight-bold">Route</p>
-            <p class="font-weight-bold">Milepoint</p>
-            <p class="font-weight-bold">Latitude</p>
-            <p class="font-weight-bold">Longitude</p>
-            <p class="font-weight-bold">Main Road Name</p>
-            <p class="font-weight-bold">City</p>
-            <p class="font-weight-bold">County</p>
-            <p class="font-weight-bold">Severity</p>
-            <p class="font-weight-bold">Work Zone Related</p>
-            <p class="font-weight-bold">Pedestrian Involved</p>
-            <p class="font-weight-bold">Bicyclist Involved</p>
-            <p class="font-weight-bold">Motorcycle Involved</p>
-            <p class="font-weight-bold">Improper Restraint</p>
+<section class="bg-light">
+    <div class="container px-5">
+        <h1 class="text-center">Details for Crash @crash.CRASH_ID</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-auto">
+                <p class="font-weight-bold">Crash ID</p>
+                <p class="font-weight-bold">Date/Time</p>
+                <p class="font-weight-bold">Route</p>
+                <p class="font-weight-bold">Milepoint</p>
+                <p class="font-weight-bold">Latitude</p>
+                <p class="font-weight-bold">Longitude</p>
+                <p class="font-weight-bold">Main Road Name</p>
+                <p class="font-weight-bold">City</p>
+                <p class="font-weight-bold">County</p>
+                <p class="font-weight-bold">Severity</p>
+                <p class="font-weight-bold">Work Zone Related</p>
+                <p class="font-weight-bold">Pedestrian Involved</p>
+                <p class="font-weight-bold">Bicyclist Involved</p>
+                <p class="font-weight-bold">Motorcycle Involved</p>
+                <p class="font-weight-bold">Improper Restraint</p>
 
-            <NavLink class="btn btn-secondary" href="/admin/crashes">Back</NavLink>
-            <NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
-        </div>
-        <div class="col">
-            <p>@crash.CRASH_ID</p>
-            <p>@crash.CRASH_DATETIME</p>
-            <p>@crash.ROUTE</p>
-            <p>@crash.MILEPOINT</p>
-            <p>@crash.LAT_UTM_Y</p>
-            <p>@crash.LONG_UTM_X</p>
-            <p>@crash.MAIN_ROAD_NAME</p>
-            <p>@crash.CITY</p>
-            <p>@crash.COUNTY_NAME</p>
-            <p>@crash.Severity.SEVERITY_NAME</p>
-            <p>@crash.WORK_ZONE_RELATED</p>
-            <p>@crash.PEDESTRIAN_INVOLVED</p>
-            <p>@crash.BICYCLIST_INVOLVED</p>
-            <p>@crash.MOTORCYCLE_INVOLVED</p>
-            <p>@crash.IMPROPER_RESTRAINT</p>
-        </div>
-        <div class="col-md-auto">
-            <p class="font-weight-bold">Unrestrained</p>
-            <p class="font-weight-bold">DUI</p>
-            <p class="font-weight-bold">Intersection Related</p>
-            <p class="font-weight-bold">Wild Animal Related</p>
-            <p class="font-weight-bold">Domestic Animal Related</p>
-            <p class="font-weight-bold">Overturn/Rollover</p>
-            <p class="font-weight-bold">Commercial Motor Vehicle Involved</p>
-            <p class="font-weight-bold">Teenage Driver Involved</p>
-            <p class="font-weight-bold">Older Driver Involved</p>
-            <p class="font-weight-bold">Night/Dark Condition</p>
-            <p class="font-weight-bold">Single Vehicle</p>
-            <p class="font-weight-bold">Distracted Driving</p>
-            <p class="font-weight-bold">Drowsy Driving</p>
-            <p class="font-weight-bold">Roadway Departure</p>
-        </div>
-        <div class="col">
-            <p>@crash.UNRESTRAINED</p>
-            <p>@crash.DUI</p>
-            <p>@crash.INTERSECTION_RELATED</p>
-            <p>@crash.WILD_ANIMAL_RELATED</p>
-            <p>@crash.DOMESTIC_ANIMAL_RELATED</p>
-            <p>@crash.OVERTURN_ROLLOVER</p>
-            <p>@crash.COMMERCIAL_MOTOR_VEH_INVOLVED</p>
-            <p>@crash.TEENAGE_DRIVER_INVOLVED</p>
-            <p>@crash.OLDER_DRIVER_INVOLVED</p>
-            <p>@crash.NIGHT_DARK_CONDITION</p>
-            <p>@crash.SINGLE_VEHICLE</p>
-            <p>@crash.DISTRACTED_DRIVING</p>
-            <p>@crash.DROWSY_DRIVING</p>
-            <p>@crash.ROADWAY_DEPARTURE</p>
+                <NavLink class="btn btn-secondary" href="/admin/crashes">Back</NavLink>
+                <NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+            </div>
+            <div class="col">
+                <p>@crash.CRASH_ID</p>
+                <p>@crash.CRASH_DATETIME</p>
+                <p>@crash.ROUTE</p>
+                <p>@crash.MILEPOINT</p>
+                <p>@crash.LAT_UTM_Y</p>
+                <p>@crash.LONG_UTM_X</p>
+                <p>@crash.MAIN_ROAD_NAME</p>
+                <p>@crash.CITY</p>
+                <p>@crash.COUNTY_NAME</p>
+                <p>@crash.Severity.SEVERITY_NAME</p>
+                <p>@crash.WORK_ZONE_RELATED</p>
+                <p>@crash.PEDESTRIAN_INVOLVED</p>
+                <p>@crash.BICYCLIST_INVOLVED</p>
+                <p>@crash.MOTORCYCLE_INVOLVED</p>
+                <p>@crash.IMPROPER_RESTRAINT</p>
+            </div>
+            <div class="col-md-auto">
+                <p class="font-weight-bold">Unrestrained</p>
+                <p class="font-weight-bold">DUI</p>
+                <p class="font-weight-bold">Intersection Related</p>
+                <p class="font-weight-bold">Wild Animal Related</p>
+                <p class="font-weight-bold">Domestic Animal Related</p>
+                <p class="font-weight-bold">Overturn/Rollover</p>
+                <p class="font-weight-bold">Commercial Motor Vehicle Involved</p>
+                <p class="font-weight-bold">Teenage Driver Involved</p>
+                <p class="font-weight-bold">Older Driver Involved</p>
+                <p class="font-weight-bold">Night/Dark Condition</p>
+                <p class="font-weight-bold">Single Vehicle</p>
+                <p class="font-weight-bold">Distracted Driving</p>
+                <p class="font-weight-bold">Drowsy Driving</p>
+                <p class="font-weight-bold">Roadway Departure</p>
+            </div>
+            <div class="col">
+                <p>@crash.UNRESTRAINED</p>
+                <p>@crash.DUI</p>
+                <p>@crash.INTERSECTION_RELATED</p>
+                <p>@crash.WILD_ANIMAL_RELATED</p>
+                <p>@crash.DOMESTIC_ANIMAL_RELATED</p>
+                <p>@crash.OVERTURN_ROLLOVER</p>
+                <p>@crash.COMMERCIAL_MOTOR_VEH_INVOLVED</p>
+                <p>@crash.TEENAGE_DRIVER_INVOLVED</p>
+                <p>@crash.OLDER_DRIVER_INVOLVED</p>
+                <p>@crash.NIGHT_DARK_CONDITION</p>
+                <p>@crash.SINGLE_VEHICLE</p>
+                <p>@crash.DISTRACTED_DRIVING</p>
+                <p>@crash.DROWSY_DRIVING</p>
+                <p>@crash.ROADWAY_DEPARTURE</p>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
 
 @code {
 
