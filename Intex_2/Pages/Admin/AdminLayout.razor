@@ -1,30 +1,20 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="bg-warning text-white p-2">
-    <div class="containter-fluid">
-        <div class="row">
-            <div class="col">
-                <span class="navbar-brand m-lg-2">UDOT Crash Center Admin</span>
-            </div>
-
-            <div class="col-2 text-right">
-                <span class="navbar-brand m-lg-2">
-                    <a class="btn btn-sm btn-secondary" href="/account/logout">Log Out</a>
-                </span>
-            </div>
+<!-- Navigation from Bootstrap theme -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">UDOT Crash Center Admin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/account/logout">Log Out</a></li>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
 
 <div class="container-fluid">
     <div class="row p-2">
-        @*<div class="col-3">
-            <div class="d-grid gap-2">
-                <NavLink class="btn btn-outline-primary" href="/admin/crashes"
-                         ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">Crashes</NavLink>
-            </div>
-        </div>*@
-
         <div class="col">
             @Body
         </div>
