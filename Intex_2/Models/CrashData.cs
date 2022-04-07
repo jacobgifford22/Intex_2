@@ -24,7 +24,7 @@ namespace Intex_2.Models
                 milepoint, intersection, teenager, dark, sing_veh, city, county, route
             };
             int[] dimensions = new int[] { 1, 8 };
-            return new DenseTensor<float>(data, dimensions)
+            return new DenseTensor<float>(data, dimensions);
         }
     }
 }
