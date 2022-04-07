@@ -68,7 +68,7 @@ namespace Intex_2
             {
                 options.Preload = true;
                 options.IncludeSubDomains = true;
-                options.MaxAge = TimeSpan.FromDays(30);
+                options.MaxAge = TimeSpan.FromSeconds(60);
                 //options.ExcludedHosts.Add("example.com");
             });
             services.AddHttpsRedirection(options =>
@@ -80,8 +80,9 @@ namespace Intex_2
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             {
-                app.UseCookiePolicy();
                 app.UseHsts();
+
+                app.UseCookiePolicy();
                 app.UseHttpsRedirection();
                 app.UseStaticFiles();
 
