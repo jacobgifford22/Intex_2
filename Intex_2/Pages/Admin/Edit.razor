@@ -1,6 +1,8 @@
 ﻿@page "/admin/crashes/edit/{id:int}"
 @page "/admin/crashes/add"
 @inherits OwningComponentBase<ICrashRepository>
+@using Microsoft.AspNetCore.Components.Forms;
+
 
 <style>
     div.validation-message {color: crimson; font-weight:500}
@@ -25,7 +27,11 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.UNRESTRAINED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.UNRESTRAINED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.UNRESTRAINED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -41,7 +47,11 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.DUI)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.DUI"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.DUI">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>            
             </div>
         </div>
         <div class="row pt-1">
@@ -57,7 +67,11 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.INTERSECTION_RELATED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.INTERSECTION_RELATED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.INTERSECTION_RELATED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>            
             </div>
         </div>
         <div class="row pt-1">
@@ -66,14 +80,18 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.MILEPOINT)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.MILEPOINT"></InputText>
+                <InputNumber class="form-control" @bind-Value="c.MILEPOINT"></InputNumber>
             </div>
             <div class="col-2">
                 <label class="font-weight-bold">Wild Animal Related</label>
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.WILD_ANIMAL_RELATED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.WILD_ANIMAL_RELATED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.WILD_ANIMAL_RELATED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -82,14 +100,18 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.LAT_UTM_Y)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.LAT_UTM_Y"></InputText>
+                <InputNumber class="form-control" @bind-Value="c.LAT_UTM_Y"></InputNumber>
             </div>
             <div class="col-2">
                 <label class="font-weight-bold">Domestic Animal Related</label>
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.DOMESTIC_ANIMAL_RELATED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.DOMESTIC_ANIMAL_RELATED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.DOMESTIC_ANIMAL_RELATED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -98,14 +120,18 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.LONG_UTM_X)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.LONG_UTM_X"></InputText>
+                <InputNumber class="form-control" @bind-Value="c.LONG_UTM_X"></InputNumber>
             </div>
             <div class="col-2">
                 <label class="font-weight-bold">Overturn/Rollover</label>
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.OVERTURN_ROLLOVER)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.OVERTURN_ROLLOVER"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.OVERTURN_ROLLOVER">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -121,7 +147,11 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.COMMERCIAL_MOTOR_VEH_INVOLVED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.COMMERCIAL_MOTOR_VEH_INVOLVED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.COMMERCIAL_MOTOR_VEH_INVOLVED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -137,7 +167,11 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.TEENAGE_DRIVER_INVOLVED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.TEENAGE_DRIVER_INVOLVED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.TEENAGE_DRIVER_INVOLVED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -153,7 +187,11 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.OLDER_DRIVER_INVOLVED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.OLDER_DRIVER_INVOLVED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.OLDER_DRIVER_INVOLVED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -161,16 +199,24 @@
                 <label class="font-weight-bold">Severity</label>
             </div>
             <div class="col-4">
-                @* TODO: Add a select from list dropdown with severity names *@
                 <ValidationMessage For="@(() => c.CRASH_SEVERITY_ID)"></ValidationMessage>
-                <InputNumber class="form-control" @bind-Value="c.CRASH_SEVERITY_ID"></InputNumber>
+                <CustomInputSelect class="form-control" @bind-Value="c.CRASH_SEVERITY_ID">
+                    @foreach (Severity s in severities)
+                    {
+                        <option value="@s.CRASH_SEVERITY_ID">@s.SEVERITY_NAME</option>
+                    }
+                </CustomInputSelect>
             </div>
             <div class="col-2">
                 <label class="font-weight-bold">Night/Dark Condition</label>
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.NIGHT_DARK_CONDITION)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.NIGHT_DARK_CONDITION"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.NIGHT_DARK_CONDITION">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -179,14 +225,22 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.WORK_ZONE_RELATED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.WORK_ZONE_RELATED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.WORK_ZONE_RELATED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
             <div class="col-2">
                 <label class="font-weight-bold">Single Vehicle</label>
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.SINGLE_VEHICLE)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.SINGLE_VEHICLE"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.SINGLE_VEHICLE">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -195,14 +249,22 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.PEDESTRIAN_INVOLVED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.PEDESTRIAN_INVOLVED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.PEDESTRIAN_INVOLVED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
             <div class="col-2">
                 <label class="font-weight-bold">Distracted Driving</label>
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.DISTRACTED_DRIVING)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.DISTRACTED_DRIVING"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.DISTRACTED_DRIVING">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -211,14 +273,22 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.BICYCLIST_INVOLVED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.BICYCLIST_INVOLVED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.BICYCLIST_INVOLVED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
             <div class="col-2">
                 <label class="font-weight-bold">Drowsy Driving</label>
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.DROWSY_DRIVING)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.DROWSY_DRIVING"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.DROWSY_DRIVING">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -227,14 +297,22 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.MOTORCYCLE_INVOLVED)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.MOTORCYCLE_INVOLVED"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.MOTORCYCLE_INVOLVED">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
             <div class="col-2">
                 <label class="font-weight-bold">Roadway Departure</label>
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.ROADWAY_DEPARTURE)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.ROADWAY_DEPARTURE"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.ROADWAY_DEPARTURE">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
         </div>
         <div class="row pt-1">
@@ -243,7 +321,11 @@
             </div>
             <div class="col-4">
                 <ValidationMessage For="@(() => c.IMPROPER_RESTRAINT)"></ValidationMessage>
-                <InputText class="form-control" @bind-Value="c.IMPROPER_RESTRAINT"></InputText>
+                <InputSelect class="form-control" @bind-Value="c.IMPROPER_RESTRAINT">
+                    <option></option>
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </InputSelect>
             </div>
             <div class="col-2">
 
@@ -269,11 +351,14 @@
     public string TitleText => Id == 0 ? "Add" : "Edit";
 
     public Crash c { get; set; } = new Crash();
+    public IEnumerable<Severity> severities { get; set; }
 
     public ICrashRepository repo => Service;
 
     protected override void OnParametersSet()
     {
+        severities = repo.Severities.ToList();
+
         if (Id != 0) // Existing crash
         {
             c = repo.Crashes.Include(x => x.Severity).FirstOrDefault(x => x.CRASH_ID == Id);
@@ -296,5 +381,36 @@
 
     [Inject]
     public NavigationManager NavManager { get; set; }
+
+
+    // Custom class to allow binding an InputSelect to an integer
+    public class CustomInputSelect<TValue> : InputSelect<TValue>
+    {
+        protected override bool TryParseValueFromString(string value, out TValue result,
+            out string validationErrorMessage)
+        {
+            if (typeof(TValue) == typeof(int))
+            {
+                if (int.TryParse(value, out var resultInt))
+                {
+                    result = (TValue)(object)resultInt;
+                    validationErrorMessage = null;
+                    return true;
+                }
+                else
+                {
+                    result = default;
+                    validationErrorMessage =
+                        $"The selected value {value} is not a valid item.";
+                    return false;
+                }
+            }
+            else
+            {
+                return base.TryParseValueFromString(value, out result,
+                    out validationErrorMessage);
+            }
+        }
+    }
 
 }
