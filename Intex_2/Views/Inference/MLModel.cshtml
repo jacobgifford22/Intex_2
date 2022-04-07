@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "ML Model";
+}
+
+
+
+@model CrashData
+
+<!-- Page content-->
+<section class="py-5">
+    <div class="container px-5">
+        
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
+                <h1 class="fw-bolder">Crash Severity Prediction</h1>
+                <p class="lead fw-normal text-muted mb-0">Fill in the questions below to determine how serious a crash will be.</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <form method="post" asp-controller="Inference" asp-action="Score">
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="milepoint">Milepoint 0.0 (off the highway)?</label>
+                            <select>
+                                <option value="1">No</option>
+                                <option value="0">Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="intersection">Was this intersection related?</label>
+                            <select>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="teenager">Was a teenage driver involved?</label>
+                            <select>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="dark">Was it dark outside?</label>
+                            <select>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="sing_veh">Was there only one vehicle involved?:</label>
+                            <select>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="city">What city?:</label>
+                            <select>
+                                <option value="1">Other</option>
+                                <option value="0">Draper</option>
+                                <option value="0">Layton</option>
+                                <option value="0">Lehi</option>
+                                <option value="0">Murray</option>
+                                <option value="0">Ogden</option>
+                                <option value="0">Orem</option>
+                                <option value="0">Outside City Limits</option>
+                                <option value="0">Provo</option>
+                                <option value="0">Salt Lake City</option>
+                                <option value="0">Sandy</option>
+                                <option value="0">South Jordan</option>
+                                <option value="0">South Salt Lake</option>
+                                <option value="0">St. George</option>
+                                <option value="0">Taylorsville</option>
+                                <option value="0">West Jordan</option>
+                                <option value="0">West Valley City</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="county">What county did it take place in?:</label>
+                            <select>
+                                <option value="1">Other</option>
+                                <option value="0">Cache</option>
+                                <option value="0">Davis</option>
+                                <option value="0">Sale Lake</option>
+                                <option value="0">Utah</option>
+                                <option value="0">Washington</option>
+                                <option value="0">Weber</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="route">What route did it take place on?:</label>
+                            <select>
+                                <option value="1">Other</option>
+                                <option value="0">15</option>
+                                <option value="0">68</option>
+                                <option value="0">80</option>
+                                <option value="0">89</option>
+                            </select>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+    </section>

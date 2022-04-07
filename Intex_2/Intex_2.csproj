@@ -10,6 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\Inference\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="wwwroot\js\scripts.js" />
     <None Include="wwwroot\lib\startbootstrap-modern-business-gh-pages\js\scripts.js" />
   </ItemGroup>
@@ -28,4 +31,7 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Inference\" />
+  </ItemGroup>
 </Project>

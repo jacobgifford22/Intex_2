@@ -36,5 +36,24 @@ namespace Intex_2.Controllers
             result.Dispose();
             return View("Score", prediction);
         }
+
+        [HttpGet]
+        public IActionResult CrashCount()
+        {
+            return View(); 
+        }
+
+        [HttpPost]
+        public IActionResult Crash_Score(CrashCount data)
+        {
+            var result = _session.Run(new List<NamedOnnxValue>
+            {
+                NamedOnnxValue.CreateFromTensor("float_input", data.AsTensor())
+            });
+            Tensor<float> score = result.First().AsTensor<float>();
+            var prediction = new Prediction { PredictedValue = score.First() };
+            result.Dispose();
+            return View("Crash_Score", prediction);
+        }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.ML.OnnxRuntime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,12 @@ namespace Intex_2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("model_county_accidents.onnx"));
+
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("model_severity.onnx"));
 
             services.AddDbContext<CrashDbContext>(options =>
             {
