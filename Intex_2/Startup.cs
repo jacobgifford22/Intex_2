@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Intex_2
@@ -38,7 +39,7 @@ namespace Intex_2
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            
+
             services.AddDbContext<AppIdentityDBContext>(options =>
             {
                 options.UseMySql(Configuration["ConnectionStrings:IdentityDBConnection"]);
@@ -52,8 +53,7 @@ namespace Intex_2
                 options.Password.RequiredLength = 8;
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
-
-                //
+                options.Password.RequireLowercase = true;
             });
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -64,55 +64,72 @@ namespace Intex_2
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            //middleware
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            services.AddHsts(options =>
             {
-                // Page number and severity
-                endpoints.MapControllerRoute(
-                    name: "severitypage",
-                    pattern: "/ViewCrashes/{crashSeverity}/Page{pageNum}",
-                    defaults: new { Controller = "Home", action = "ViewCrashes" });
-
-                // Page number only
-                endpoints.MapControllerRoute(
-                    name: "page",
-                    pattern: "/ViewCrashes/Page{pageNum}",
-                    defaults: new { Controller = "Home", action = "ViewCrashes" });
-
-                // Severity only
-                endpoints.MapControllerRoute(
-                    name: "severity",
-                    pattern: "/ViewCrashes/{crashSeverity}",
-                    defaults: new { Controller = "Home", action = "ViewCrashes", pageNum = 1 });
-
-                // Crash details page
-                endpoints.MapControllerRoute(
-                    name: "crashdetails",
-                    pattern: "/CrashDetails/{crashId}/{returnPage}",
-                    defaults: new { Controller = "Home", action = "CrashDetails" });
-
-                endpoints.MapDefaultControllerRoute();
-
-                endpoints.MapRazorPages();
-
-                endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(30);
+                //options.ExcludedHosts.Add("example.com");
             });
-
-            IdentitySeedData.EnsurePopulated(app);
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = (int)HttpStatusCode.TemporaryRedirect;
+                options.HttpsPort = 5001;
+            });
         }
-    }
-}
+            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+            {
+                app.UseCookiePolicy();
+                app.UseHsts();
+                app.UseHttpsRedirection();
+                app.UseStaticFiles();
+
+                app.UseRouting();
+
+                //middleware
+                app.UseAuthentication();
+                app.UseAuthorization();
+
+
+
+                app.UseEndpoints(endpoints =>
+                {
+                    // Page number and severity
+                    endpoints.MapControllerRoute(
+                            name: "severitypage",
+                            pattern: "/ViewCrashes/{crashSeverity}/Page{pageNum}",
+                            defaults: new { Controller = "Home", action = "ViewCrashes" });
+
+                    // Page number only
+                    endpoints.MapControllerRoute(
+                            name: "page",
+                            pattern: "/ViewCrashes/Page{pageNum}",
+                            defaults: new { Controller = "Home", action = "ViewCrashes" });
+
+                    // Severity only
+                    endpoints.MapControllerRoute(
+                            name: "severity",
+                            pattern: "/ViewCrashes/{crashSeverity}",
+                            defaults: new { Controller = "Home", action = "ViewCrashes", pageNum = 1 });
+
+                    // Crash details page
+                    endpoints.MapControllerRoute(
+                            name: "crashdetails",
+                            pattern: "/CrashDetails/{crashId}/{returnPage}",
+                            defaults: new { Controller = "Home", action = "CrashDetails" });
+
+                    endpoints.MapDefaultControllerRoute();
+
+                    endpoints.MapRazorPages();
+
+                    endpoints.MapBlazorHub();
+                    endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
+                });
+
+                IdentitySeedData.EnsurePopulated(app);
+            }
+        }
+    } 
+
+

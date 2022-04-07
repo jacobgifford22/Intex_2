@@ -37,12 +37,13 @@
                 </div>
             </nav>
 
-            <partial name="_CookieConsentPartial" />
+            
 
-            <div>
-                <main role="main">
+            <div class="container">
+                <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
+                <partial name="_CookieConsentPartial" />
             </div>
 
         </main>
