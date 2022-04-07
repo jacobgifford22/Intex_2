@@ -1,4 +1,5 @@
-﻿@page "/admin/crashes"
+﻿@page "/admin/crashes/{Page:int}"
+@page "/admin/crashes"
 @page "/admin"
 @inherits OwningComponentBase<ICrashRepository>
 
@@ -37,30 +38,30 @@
         {
             @foreach (Crash c in CrashData)
             {
-        <tr>
-            <td>@c.CRASH_ID</td>
-            <td>@c.CRASH_DATETIME</td>
-            <td>@c.ROUTE</td>
-            <td>@c.MILEPOINT</td>
-            <td>@c.LAT_UTM_Y</td>
-            <td>@c.LONG_UTM_X</td>
-            <td>@c.MAIN_ROAD_NAME</td>
-            <td>@c.CITY</td>
-            <td>@c.COUNTY_NAME</td>
-            <td>@c.Severity.SEVERITY_NAME</td>
+                <tr>
+                    <td>@c.CRASH_ID</td>
+                    <td>@c.CRASH_DATETIME</td>
+                    <td>@c.ROUTE</td>
+                    <td>@c.MILEPOINT</td>
+                    <td>@c.LAT_UTM_Y</td>
+                    <td>@c.LONG_UTM_X</td>
+                    <td>@c.MAIN_ROAD_NAME</td>
+                    <td>@c.CITY</td>
+                    <td>@c.COUNTY_NAME</td>
+                    <td>@c.Severity.SEVERITY_NAME</td>
 
-            <td>
-                <NavLink class="btn btn-info btn-sm" href="@GetDetailsUrl(c.CRASH_ID)">Details</NavLink>
-            </td>
+                    <td>
+                        <NavLink class="btn btn-info btn-sm" href="@GetDetailsUrl(c.CRASH_ID)">Details</NavLink>
+                    </td>
 
-            <td>
-                <NavLink class="btn btn-warning btn-sm" href="@GetEditUrl(c.CRASH_ID)">Edit</NavLink>
-            </td>
+                    <td>
+                        <NavLink class="btn btn-warning btn-sm" href="@GetEditUrl(c.CRASH_ID)">Edit</NavLink>
+                    </td>
 
-            <td>
-                <NavLink class="btn btn-danger btn-sm" href="@GetDeleteUrl(c.CRASH_ID)">Delete</NavLink>
-            </td>
-        </tr>
+                    <td>
+                        <NavLink class="btn btn-danger btn-sm" href="@GetDeleteUrl(c.CRASH_ID)">Delete</NavLink>
+                    </td>
+                </tr>
             }
         }
         else
@@ -73,11 +74,38 @@
     </tbody>
 </table>
 
+<Paging PI="pagingInfo" PageClassesEnabled="true" PageClass="Paging" PageClassSelected="active"></Paging>
+
 @code {
 
     public ICrashRepository repo => Service;
 
     public IEnumerable<Crash> CrashData { get; set; }
+
+    [Parameter]
+    public int page { get; set; }
+
+    PagingInfo pagingInfo = new PagingInfo();
+
+    protected override void OnParametersSet()
+    {
+        CreatePagingInfo();
+    }
+
+    public void CreatePagingInfo()
+    {
+        var AllCrashes = repo.Crashes.Include(x => x.Severity);
+
+        int PageSize = 25;
+        pagingInfo = new PagingInfo();
+        page = page == 0 ? 1 : page;
+        pagingInfo.CurrentPage = page;
+        pagingInfo.TotalItems = AllCrashes.Count();
+        pagingInfo.ItemsPerPage = PageSize;
+
+        var skip = PageSize * (Convert.ToInt32(page) - 1);
+        CrashData = AllCrashes.Skip(skip).Take(PageSize).ToList();
+    }
 
     protected async override Task OnInitializedAsync()
     {
@@ -86,7 +114,18 @@
 
     public async Task UpdateData()
     {
-        CrashData = await repo.Crashes.Include(x => x.Severity).OrderBy(x => x.CRASH_ID).Take(10).ToListAsync();
+        var AllCrashes = repo.Crashes.Include(x => x.Severity);
+
+        int PageSize = 25;
+        pagingInfo = new PagingInfo();
+        page = page == 0 ? 1 : page;
+        pagingInfo.CurrentPage = page;
+        pagingInfo.TotalItems = AllCrashes.Count();
+        pagingInfo.ItemsPerPage = PageSize;
+
+        var skip = PageSize * (Convert.ToInt32(page) - 1);
+
+        CrashData = await repo.Crashes.Include(x => x.Severity).OrderBy(x => x.CRASH_ID).Skip(skip).Take(PageSize).ToListAsync();
     }
 
     public string GetDetailsUrl(int id) => $"/admin/crashes/details/{id}";
