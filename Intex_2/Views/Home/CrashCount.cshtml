@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewData["Title"] = "ML Model";
+}
+
+
+
+@model CrashCount
+<!-- Page content-->
+<section class="py-5">
+    <div class="container px-5">
+
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
+                <h1 class="fw-bolder">Crash Count Prediction</h1>
+                <p class="lead fw-normal text-muted mb-0">Fill in the questions below to determine how many crashes are predicted in a specific area.</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <form method="post" asp-controller="Inference" asp-action="">
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="crash_month">What month will the crash happen?</label>
+                            <select>
+                                <option value="0">January</option>
+                                <option value="1">Febuary</option>
+                                <option value="1">March</option>
+                                <option value="1">April</option>
+                                <option value="1">May</option>
+                                <option value="1">June</option>
+                                <option value="1">July</option>
+                                <option value="1">August</option>
+                                <option value="1">September</option>
+                                <option value="1">October</option>
+                                <option value="1">November</option>
+                                <option value="1">December</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="crash_weekday">What day will the crash happen?</label>
+                            <select>
+                                <option value="0">Monday</option>
+                                <option value="1">Tuesday</option>
+                                <option value="1">Wednesday</option>
+                                <option value="1">Thuesday</option>
+                                <option value="1">Friday</option>
+                                <option value="1">Saturday</option>
+                                <option value="1">Sunday</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <label asp-for="county_name">What county will it occur in?</label>
+                            <select>
+                                <option value="1">Beaver</option>
+                                <option value="0">Box Elder</option>
+                                <option value="0">Cache</option>
+                                <option value="0">Carbon</option>
+                                <option value="0">Daggett</option>
+                                <option value="0">Davis</option>
+                                <option value="0">Duchesne</option>
+                                <option value="0">Emery</option>
+                                <option value="0">Garfield</option>
+                                <option value="0">Grand</option>
+                                <option value="0">Iron</option>
+                                <option value="0">Juab</option>
+                                <option value="0">Kane</option>
+                                <option value="0">Millard</option>
+                                <option value="0">Morgan</option>
+                                <option value="0">Picute</option>
+                                <option value="0">Rich</option>
+                                <option value="0">Salt Lake</option>
+                                <option value="0">San Juan</option>
+                                <option value="0">SanPete</option>
+                                <option value="0">Sevier</option>
+                                <option value="0">Summit</option>
+                                <option value="0">Tooele</option>
+                                <option value="0">Uintah</option>
+                                <option value="0">Utah</option>
+                                <option value="0">Wasatch</option>
+                                <option value="0">Washington</option>
+                                <option value="0">Wayne</option>
+                                <option value="0">Weber</option>
+                            </select>
+                        </div>
+
+                        
+
+
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
