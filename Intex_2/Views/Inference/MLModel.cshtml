@@ -22,7 +22,7 @@
 
                         <div class="form-floating mb-3">
                             <label asp-for="milepoint">Milepoint 0.0 (off the highway)?</label>
-                            <select>
+                            <select asp-for="milepoint">
                                 <option value="1">No</option>
                                 <option value="0">Yes</option>
                             </select>
@@ -30,7 +30,7 @@
 
                         <div class="form-floating mb-3">
                             <label asp-for="intersection">Was this intersection related?</label>
-                            <select>
+                            <select asp-for="intersection">
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
@@ -38,7 +38,7 @@
 
                         <div class="form-floating mb-3">
                             <label asp-for="teenager">Was a teenage driver involved?</label>
-                            <select>
+                            <select asp-for="teenager">
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
@@ -46,7 +46,7 @@
 
                         <div class="form-floating mb-3">
                             <label asp-for="dark">Was it dark outside?</label>
-                            <select>
+                            <select asp-for="dark">
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
@@ -54,7 +54,7 @@
 
                         <div class="form-floating mb-3">
                             <label asp-for="sing_veh">Was there only one vehicle involved?:</label>
-                            <select>
+                            <select asp-for="sing_veh">
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
@@ -62,7 +62,7 @@
 
                         <div class="form-floating mb-3">
                             <label asp-for="city">What city?:</label>
-                            <select>
+                            <select asp-for="city">
                                 <option value="1">Other</option>
                                 <option value="0">Draper</option>
                                 <option value="0">Layton</option>
@@ -85,11 +85,11 @@
 
                         <div class="form-floating mb-3">
                             <label asp-for="county">What county did it take place in?:</label>
-                            <select>
+                            <select asp-for="county">
                                 <option value="1">Other</option>
                                 <option value="0">Cache</option>
                                 <option value="0">Davis</option>
-                                <option value="0">Sale Lake</option>
+                                <option value="0">Salt Lake</option>
                                 <option value="0">Utah</option>
                                 <option value="0">Washington</option>
                                 <option value="0">Weber</option>
@@ -98,7 +98,7 @@
 
                         <div class="form-floating mb-3">
                             <label asp-for="route">What route did it take place on?:</label>
-                            <select>
+                            <select asp-for="route">
                                 <option value="1">Other</option>
                                 <option value="0">15</option>
                                 <option value="0">68</option>
@@ -106,7 +106,6 @@
                                 <option value="0">89</option>
                             </select>
                         </div>
-
 
                         <button type="submit" class="btn btn-primary">Calculate</button>
 

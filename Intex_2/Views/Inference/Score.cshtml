@@ -4,4 +4,23 @@
 
 @model Intex_2.Models.Prediction
 
-<h1>Score: @Model.PredictedValue</h1>
+<section class="py-5">
+    <div class="container px-5">
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+            <h1 class="text-center">Score: @Model.PredictedValue</h1>
+            <hr />
+            <div class="container-fluid p-0 m-0">
+                <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col-1 text-right">
+                        <a class="btn btn-primary" asp-controller="Inference" asp-action="MLModel">Back</a>
+                    </div>
+                    <div class="col-1 text-left">
+                        <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Home</a>
+                    </div>
+                    <div class="col-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

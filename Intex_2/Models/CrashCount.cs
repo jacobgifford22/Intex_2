@@ -25,7 +25,7 @@ namespace Intex_2.Models
             data[(int)crash_weekday] = 1;
             data[(int)county_name] = 1;
 
-            int[] dimensions = new int[] { 1, 3 };
+            int[] dimensions = new int[] { 1, 48 };
             return new DenseTensor<float>(data, dimensions);
         }
     }

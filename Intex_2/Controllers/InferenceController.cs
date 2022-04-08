@@ -31,7 +31,7 @@ namespace Intex_2.Controllers
             {
                 NamedOnnxValue.CreateFromTensor("float_input", data.AsTensor())
             });
-            Tensor<float> score = result.First().AsTensor<float>();
+            Tensor<string> score = result.First().AsTensor<string>();
             var prediction = new Prediction { PredictedValue = score.First() };
             result.Dispose();
             return View("Score", prediction);
@@ -50,7 +50,7 @@ namespace Intex_2.Controllers
             {
                 NamedOnnxValue.CreateFromTensor("float_input", data.AsTensor())
             });
-            Tensor<float> score = result.First().AsTensor<float>();
+            Tensor<string> score = result.First().AsTensor<string>();
             var prediction = new Prediction { PredictedValue = score.First() };
             result.Dispose();
             return View("Crash_Score", prediction);
