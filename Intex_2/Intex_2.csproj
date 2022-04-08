@@ -14,14 +14,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\js\scripts.js" />
+    <None Include="wwwroot\lib\qrcode\.gitignore" />
+    <None Include="wwwroot\lib\qrcode\index.svg" />
+    <None Include="wwwroot\lib\qrcode\jquery.min.js" />
+    <None Include="wwwroot\lib\qrcode\LICENSE" />
+    <None Include="wwwroot\lib\qrcode\qrcode.js" />
+    <None Include="wwwroot\lib\qrcode\qrcode.min.js" />
+    <None Include="wwwroot\lib\qrcode\README.md" />
     <None Include="wwwroot\lib\startbootstrap-modern-business-gh-pages\js\scripts.js" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Cake.LibMan" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.23" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.23">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.23" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.23">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

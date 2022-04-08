@@ -9,6 +9,29 @@
         <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
             <h1 class="text-center">Score: @Model.PredictedValue</h1>
             <hr />
+
+            @if (Int16.Parse(Model.PredictedValue) == 1)
+            {
+                <h4 class="text-center">Yeet! The predicted severity is no injury.</h4>
+            }
+            else if (Int16.Parse(Model.PredictedValue) == 2)
+            {
+                <h4 class="text-center">The predicted severity is no possible injury.</h4>
+            }
+            else if (Int16.Parse(Model.PredictedValue) == 3)
+            {
+                <h4 class="text-center">The predicted severity is suspected minor injury.</h4>
+            }
+            else if (Int16.Parse(Model.PredictedValue) == 4)
+            {
+                <h4 class="text-center">The predicted severity is suspected serious injury.</h4>
+            }
+            else if (Int16.Parse(Model.PredictedValue) == 5)
+            {
+                <h4 class="text-center">The predicted severity is fatal.</h4>
+            }
+
+            <br />
             <div class="container-fluid p-0 m-0">
                 <div class="row">
                     <div class="col-5"></div>
